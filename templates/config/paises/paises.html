@@ -1,0 +1,53 @@
+
+<div class="pt-4 relative overflow-x-auto">
+
+<button hx-get="/modal" hx-target="body" hx-swap="beforeend" class="btn btn-outline-dark">Open a Modal</button>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>
+
+    <table class="table">
+        <thead>
+            <tr class="">
+                <th>Nombre</th>
+                <th>Mercados</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if countries %}
+
+                {% for pais in country %}
+                <tr>
+                    <td>{{ pais.name }}</td>
+                    <td>{{ pais }}</td>
+                </tr>
+                {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="5" class=""><p class="lead text-danger text-center fw-normal">No values in database</p></td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="p-6">
+    <h1 class="mb-4">Configuración</h1>
+
+    <div class="" role="tablist">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a hx-get="/showCountries" hx-target="#configContent" aria-controls="configContent" aria-selected="false" role="tab" class="nav-link">Países</a>
+            </li class="nav-item">
+            <li>
+                <a hx-get="/showMercados" hx-target="#configContent" aria-controls="configContent" aria-selected="false" role="tab" class="nav-link">Mercados</a>
+            </li class="nav-item">
+            <li>
+                <a herf="/" aria-controls="#configContent" aria-selected="false" role="tab" class="nav-link">Assets</a>
+            </li>
+            <li class="nav-item">
+                <a herf="/" aria-controls="#configContent" aria-selected="false" role="tab" class="nav-link">Portfolio</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="indicator"></div>
+    <div id="configContent" role="tabpanel" class="tabpanel">
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:/static/database.db"
+}
+
+// generator
+generator client {
+    provider             = "prisma-client-py"
+    recursive_type_depth = 5
+}
+
+model Country {
+    id      Int      @id @default(autoincrement())
+    name    String
+    markets Market[]
+}
+
+model Market {
+    id        Int     @id @default(autoincrement())
+    name      String
+    countryId Int
+    country   Country @relation(fields: [countryId], references: [id])
+    assets    Asset[]
+}
+
+model Asset {
+    id           Int            @id @default(autoincrement())
+    name         String
+    marketId     Int
+    market       Market         @relation(fields: [marketId], references: [id])
+    currency     String
+    date         DateTime
+    createdAt    DateTime       @default(now())
+    updatedAt    DateTime       @updatedAt
+    portfolios   Portfolio[]
+    transactions Transactions[]
+}
+
+model Portfolio {
+    id         Int      @id @default(autoincrement())
+    name       String
+    quantity   Int
+    price      Float
+    side       String
+    assetId    Int
+    asset      Asset    @relation(fields: [assetId], references: [id])
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    platformId Int
+    platform   Platform @relation(fields: [platformId], references: [id])
+}
+
+model Transactions {
+    id         Int      @id @default(autoincrement())
+    quantity   Int
+    price      Float
+    side       String
+    assetId    Int
+    asset      Asset    @relation(fields: [assetId], references: [id])
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    platformId Int
+    platform   Platform @relation(fields: [platformId], references: [id])
+}
+
+model Platform {
+    id           Int            @id @default(autoincrement())
+    name         String
+    createdAt    DateTime       @default(now())
+    updatedAt    DateTime       @updatedAt
+    portfolios   Portfolio[]
+    transactions Transactions[]
+}
